@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Timer for Spotify</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container-fluid m-2"> 
+        <div id="header">
+            <h1>Music Timer for Spotify</h1>
+            <h3>By <a href="https://www.colintoft.com/">Colin Toft</a></h3>
+        </div>
+        <div id="login" style="display: none">
+            <button type="reset" id="btn_login" class="btn btn-success">Log in with Spotify</button>
+        </div>
+        <div id="loggedin">
+            <div id="user-profile"></div>
+            <div id="oauth"></div>
+            
+                <input type="hidden" id='hidden_token'>
+                <div id="generator_options">
+                    <div class="form-group row mt-2 px-0">
+                        <label for="length" class="form-label col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">Playlist Length:</label>
+                        <input id='h' name='h' placeholder='h' type='number' min='0'          class="col-2 col-sm-1 reduce-padding ml-3 ml-sm-0">
+                        <label for='h'>&nbsp; : &nbsp;</label>
+                        <input id='m' name='m' placeholder='m' type='number' min='0' max='59' class="col-2 col-sm-1 reduce-padding">
+                        <label for='m'>&nbsp; : &nbsp;</label>
+                        <input id='s' name='s' placeholder='s' type='number' min='0' max='59' class="col-2 col-sm-1 reduce-padding">
+                    </div>
+					<div class="form-group row mt-2 px-0" id="range_row">
+						<label for='r' class="form-label col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">Length Range: </label>
+                        <label class="ml-3 ml-sm-0"> &plusmn; &nbsp; </label>
+						<input id='lengthRange' name='lengthRange' placeholder='Range' type='number' min='0' class="col-2 col-md-1 reduce-padding">
+						<label for='s'>&nbsp; s </label>
+					</div>
+                    <div class="form-group row px-0">
+                        <label for="Playlist" class="form-label col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">Choose music from:</label>
+                        <select name="" id="select_source_type" class="form-control form-control-sm col-8 col-sm-4 ml-3 ml-sm-0">
+                            <option>Playlist</option> 
+                            <option>Artist</option>
+                            <option>Artist (liked songs only)</option>
+                            <option>Genre (liked songs only)</option>
+                            <option>Decade (liked songs only)</option>
+                            <option>Tempo (liked songs only)</option>
+                            <option>Acousticness (liked songs only)</option>
+                            <option>Danceability (liked songs only)</option>
+                            <option>Energy (liked songs only)</option>
+                            <option>Instrumentalness (liked songs only)</option>
+                            <option>Valence (liked songs only)</option>
+                            <option>Time signature (liked songs only)</option>
+                            <option>Key (liked songs only)</option>
+                            <option>Speechiness (liked songs only)</option>
+                            <option>Liveness (liked songs only)</option>
+                        </select>
+                    </div>
+                    <div id="item_input_row" class="form-group row px-0">
+                        <label for="Playlist" class="form-label col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2" id="item_input_prompt">Playlist:</label>
+                        <select name="" id="select_source_item" class="form-control form-control-sm col-8 col-sm-4 ml-3 ml-sm-0">
+                        </select>
+                    </div>
+                    <div id="range_input_row" class="form-group row mt-2 px-0">
+                        <label id="range_input_prompt" for="length" class="form-label col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">Tempo:</label>
+                        <input id='feature_min' name='h' placeholder='min' type='number' min='0' class="col-2 reduce-padding ml-3 ml-sm-0">
+                        <label for='h' id="feature_middle_label">&nbsp; to &nbsp;</label>
+                        <input id='feature_max' name='m' placeholder='max' type='number' min='0' class="col-2 reduce-padding">
+                    </div>
+                    <div id="advanced_options">
+                        <div id="min_song_length_row" class="form-group row mt-2 px-0">
+                            <label for="length" class="form-label col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">Minimum Song Length:</label>
+                            <input id='minSongLengthM' name='minSongLengthM' placeholder='m' type='number' min='0' max='59' class="col-2 col-sm-1 reduce-padding ml-3 ml-sm-0">
+                            <label for='m'>&nbsp; : &nbsp;</label>
+                            <input id='minSongLengthS' name='minSongLengthS' placeholder='s' type='number' min='0' max='59' class="col-2 col-sm-1 reduce-padding">
+                        </div>
+                        <div id="max_song_length_row" class="form-group row mt-2 px-0">
+                            <label for="length" class="form-label col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">Maximum Song Length:</label>
+                            <input id='maxSongLengthM' name='maxSongLengthM' placeholder='m' type='number' min='0' max='59' class="col-2 col-sm-1 reduce-padding ml-3 ml-sm-0">
+                            <label for='m'>&nbsp; : &nbsp;</label>
+                            <input id='maxSongLengthS' name='maxSongLengthS' placeholder='s' type='number' min='0' max='59' class="col-2 col-sm-1 reduce-padding">     
+                        </div>
+                        <div id="num_tracks_input_row" class="form-group row mt-2 px-0">
+                            <label id="range_input_prompt" for="length" class="form-label col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">Number of Tracks:</label>
+                            <input id='minTracks' name='minTracks' placeholder='min' type='number' min='0' step='1' class="col-2 col-sm-1 reduce-padding ml-3 ml-sm-0">
+                            <label for='maxTracks' id="feature_middle_label">&nbsp; to &nbsp;</label>
+                            <input id='maxTracks' name='maxTracks' placeholder='max' type='number' min='0' step='1' class="col-2 col-sm-1 reduce-padding">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <button type="submit" id="btn_save" class="btn btn-primary col-12 col-sm-2 mx-sm-1 my-1">Save Playlist</button>
+                        <button type="submit" id="btn_shuffle" class="btn btn-primary col-12 col-sm-2 mx-sm-1 my-1">Shuffle</button>
+                        <button type="submit" id="btn_regenerate" class="btn btn-primary col-12 col-sm-2 mx-sm-1 my-1">Re-generate</button>
+                        <button type="submit" id="btn_play" style="display: none" class="btn btn-success col-12 col-sm-2 mx-sm-1 my-1">Play</button>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-12 px-0">
+                    <label id="info" style="font-weight: 500" class="form-label col-12">Choose a length and playlist to start!</label>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-10 px-0">
+                    <div class="list-group song-list">
+
+                    </div>                                             
+                </div>
+            </div> 
+        </div>
+    </div>
+    
+    <!--
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      <h1>Logged in as {{display_name}}</h1>
+      <div class="media">
+        <div class="pull-left">
+          <img class="media-object" width="150" src="{{images.0.url}}" />
+        </div>
+        <div class="media-body">
+          <dl class="dl-horizontal">
+            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
+            <dt>Id</dt><dd>{{id}}</dd>
+            <dt>Email</dt><dd>{{email}}</dd>
+            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
+            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
+            <dt>Country</dt><dd>{{country}}</dd>
+          </dl>
+        </div>
+      </div>
+    </script>
+    -->
+    
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      <h4>Currently logged in as <a href="{{external_urls.spotify}}">{{display_name}}</a>&nbsp; ({{product}})</h4>
+      <div class="media">
+        <div class="pull-left">
+          <img class="media-object" width="150" src="{{images.0.url}}" />
+        </div>
+      </div>
+    </script>
+
+    <script id="oauth-template" type="text/x-handlebars-template">
+      <h2>oAuth info</h2>
+      <dl class="dl-horizontal">
+        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+      </dl>
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="spotifymusictimer.js" type="text/javascript"></script>
+</body>
+</html>

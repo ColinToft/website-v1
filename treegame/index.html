@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	    <title>Tree Game</title>
+	    <meta name="description" content="Plant seeds, make a profit, raid other cities, and fill the world with trees!"/>
+		<link rel="stylesheet" type="text/css" href="interface.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	
+	<body>
+	    
+	    <div id="topBar">
+			<strong>Tree Game</strong> by <a href=https://www.colintoft.com>Colin Toft</a>
+			<div id="controls">
+        	    <button id="pauseButton" onclick="togglePause()">Pause</button>
+        	    &nbsp;&nbsp;
+        	    <button id="restartButton" onclick="reset()">Restart Game</button>
+    	    </div>
+	    </div> <!-- End top -->
+	    
+	    <div id="resources">
+	        <table id="resourceTable">
+	            <tr>
+	                <th>Trees: <span id="trees">0</span></th>
+	                <th>Wood: <span id="wood">0</span></th>
+	                <th>Money: <span id="money">$0.00</span></th>
+	                <th>Seeds: <span id="seeds">100</span></th>
+	            </tr>
+	            <tr>
+	                <td><span id="treesPerSecond">0</span> trees/s</td>
+	                <td><span id="woodPerSecond">0.00</span>/s</td>
+	                <td><span id="moneyPerSecond">$0.00</span>/s</td>
+	                <td><span id="seedsPerSecond">0</span>/s</td>
+	            </tr>
+	            <tr>
+	                <td><button id="plantTreeBtn" onclick="plantTree(1)">Plant Tree</button></td>
+	                <td><button id="cutTreeBtn" onclick="cutTree(1)">Cut Tree</button></td>
+	                <td><button id="sellWoodBtn" onclick="sellWood(1)">Sell Wood</button></td>
+	                <td><button id="buySeedsBtn" onclick="buySeedPacket()">Buy Seeds (<span id="seedPacketPrice">$20.00</span>)</button></td>
+	            </tr>
+	            
+	        </table>
+	    </div>
+	    
+	    <div id="consoleDiv">
+            <p class="console">
+                <span id="consoleText"></span>
+            </p>
+		</div>
+	    
+	    <div id="leftColumn">
+	    
+	    <div id="storeDiv" style="display: none;">
+            Stores: <span id="stores">1</span>
+            <button id="storePrice" onclick="buildStore()">$33.00, 160 wood</button>
+            <br />
+            Wood Price: <span id="woodPrice">$0.25</span>/log
+            <button id="raiseWoodPriceBtn" onclick="raisePrice()">Raise</button>
+            <button id="lowerWoodPriceBtn" onclick="lowerPrice()">Lower</button>
+            <br/>
+            Demand: <span id="demand">100</span>%
+            &nbsp; Popularity: <span id="popularity">100</span>%
+            <br />
+            Production: <span id="production">0.00</span>/s
+            &nbsp; Sales: <span id="salesPerSecond">0.00</span>/s
+            <br /><br />
+        </div>
+        
+        <div id=marketingDiv style="display: none;">
+            Marketing: Level <span id="marketing">1</span>
+            <button id="marketingPrice" onclick="upgradeMarketing()">$100.00</button>
+            <br /><br />
+        </div>
+        
+        Arborists: <span id="arborists">0</span>
+        <button id="arboristPrice" onclick="buyArborist()">$20.00</button>
+        <br />
+        
+        <br />
+        Woodcutters: <span id="woodcutters">0</span>
+        <button id="woodcutterPrice" onclick="buyWoodcutter()">$20.00</button>
+		<br />
+		
+		<br />
+		Seed Buyers: <span id="seedBuyers">0</span>
+        <button id="seedBuyerPrice" onclick="buySeedBuyer()">$20.00</button>
+		<br />
+		<button id=seedBuyerToggle onclick="toggleSeedBuyers()">Stop Buying</button>
+		<br />
+		
+		
+		<br />
+		Workers: <span id="workerCount">0</span>/<span id="maxWorkers">100</span>
+		<br />
+		
+		
+		</div> <!-- end leftColumn -->
+		
+		
+		
+		<div id="middleColumn">
+		<h1>Upgrades</h1>
+		<div id="upgradeListStart"></div>
+		
+		</div> <!-- end middleColumn -->
+		
+		<div id=rightColumn>
+		<div id="cityDiv" style="display: none;">
+		    <h1>City</h1>
+		    Defense: <span id="cityDefense">0</span>
+		    <br>
+		    Walls: <span id="standingWalls">0</span>/<span id="cityWalls">0</span>
+		    <button id="rebuildWallButton" onclick="rebuildWall()" style="display: none;">Rebuild Wall (250 wood)</button>
+		    <br><br>
+		    
+		    Time Until Next Attack: <span id="timeUntilRaid">???</span>
+		    
+		    
+		</div>
+		</div> <!-- end rightColumn -->
+		
+		<script type="text/javascript" src="upgrades.js"></script>
+        <script type="text/javascript" src="tutorial.js"></script>
+		<script type="text/javascript" src="cities.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+        <br />
+	</body>
+</html>

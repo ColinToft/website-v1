@@ -1,0 +1,150 @@
+body {
+    background-color: #97FC32;
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+h1 {
+    margin-top: -7px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+}
+
+button {
+    border: 2px solid black;
+    border-radius: 4px 4px 4px 4px;
+    background-color: #30c030;
+    padding: 2px 4px;
+    cursor: pointer;
+    margin-bottom: 2px;
+    font-family: 'Trebuchet MS', 'Roboto', Helvetica, sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: green;
+}
+
+button:disabled {
+    background-color: #c8c8c8;
+    border: none;
+    color: #808080;
+}
+
+.menu {
+    background-color: lightgrey;
+    font-weight: bold;
+}
+
+.menu:hover {
+    background-color: grey;
+}
+
+#topBar {
+    float: top;
+    min-height: 25px;
+    width: 100%;
+    margin-bottom: 5px;
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+#controls {
+    float: right;
+    padding-right: 0px;
+}
+
+#resources {
+    float: top;
+    background-color: #BDFC7E;
+    min-height: 80px;
+    border: 2px solid green;
+    padding-bottom: 2px;
+    min-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#resourceTable {
+    min-width: 100%;
+}
+
+#resourceTable td {
+    text-align: center;
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+#resourceTable th {
+    font-size: xx-large;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: bold;
+    width: 24.75%;
+}
+
+#consoleDiv {
+    float: right;
+    width: 275px;
+    margin-top: 15px;
+    border: 2px solid green;
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color: black;
+    color: greenyellow;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+}
+
+#leftColumn {
+    float: left;
+    width: 275px;
+    margin-top: 15px;
+}
+
+#middleColumn {
+    float: left;
+    width: 275px;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+#rightColumn {
+    float: left;
+    width: 275px;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.upgradeButton {
+    border-radius: 0px;
+    display: block;
+    height: 60px;
+    width: 275px;
+    /* background: #c8c8c8; */
+    background: #B5651D;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    outline: none;
+    margin-bottom: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.upgradeButton:hover {
+    display: block;
+    height: 60px;
+    width: 275px;
+    /* background: #d6d6d6;*/
+    background: #995418;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.upgradeButton:active {
+    display: block;
+    height: 60px;
+    width: 275px;
+    background: #d1d1d1;
+    border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.upgradeButton:disabled {
+    background: #c8c8c8;
+    border: none;
+}

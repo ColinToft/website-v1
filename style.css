@@ -1,0 +1,342 @@
+:root{
+  --main-color: #438c94;
+  --accent-color: turquoise; //#F2D558;
+  --text-color: #29272A;
+  --background-color: #F0F0EC;
+  --title-offset: 130px;
+    --title-offset-minus-20: -110px;
+}
+html {
+  scroll-behavior: smooth;
+}
+@font-face {
+  font-family: Spinnaker;
+  src: url("fonts/Spinnaker-Regular.ttf");
+}
+@font-face {
+  font-family: Muli;
+  src: url("fonts/Muli-Regular.ttf");
+}
+@font-face {
+  font-family: RobotoMono;
+  src: url("fonts/RobotoMono-Regular.ttf");
+}
+
+body {
+  background-color: var(--background-color);
+}
+h1 {
+  color: var(--text-color);
+  font-family: RobotoMono;
+}
+h2 {
+  color: var(--text-color);
+  text-align: center;
+  padding: 0px, 0px, 0px, 0px;
+}
+p {
+  font-family: Spinnaker;
+  color: var(--text-color);
+}
+* {
+  font-family: Spinnaker;
+}
+body{
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.headerImage {
+    background-image: url(pictures/cover.webp);
+    background-position: 50% 15%;
+    background-size: 100% auto;
+    background-repeat: no-repeat; 
+
+  text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+  color: white;
+  font-family: Muli;
+  font-size: 6vw;
+    height: 80vw;
+}
+
+.headerImage .centered {
+    top: 35vw;
+}
+.skills{
+  width: 100vw;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+}
+.bodyType{
+  width: 75%;
+  margin: auto;
+  margin-bottom: var(--title-offset-minus-20);
+}
+
+.bodyType p{
+  padding-left: 20px;
+}
+.bodyType button{
+  margin-left: 20px;
+}
+.bodyType iframe{
+  padding-left: 20px;
+}
+button{
+  outline:none;
+}
+
+.linkButton button{
+  background: url("https://img.icons8.com/ios-glyphs/48/000000/github.png">);
+  background-color: var(--main-color);
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 8px 16px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  vertical-align: middle;
+  cursor: pointer; /* Mouse pointer on hover */
+  height: 40px;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+footer{
+  background: var(--main-color);
+  margin-left: 20px;
+  margin-right: 20px;
+  color: var(--text-color);
+
+}
+footer p{
+  color: var(--text-color);
+
+}
+/* Darker background on mouse-over */
+.linkButton button:hover {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+
+}
+
+.side-crop {
+   max-width: 100%; overflow: hidden;
+}
+.centered {
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 4px 4px rgba(0, 0, 0, .3);
+  font-family: RobotoMono;
+}
+
+.centeredImage {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    display: block;
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+.top-left-image {
+
+  position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+td {
+    width: auto
+}
+
+td.minimize {
+    width: 1%;
+    white-space: nowrap;
+}
+
+table{
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.matrixConsole {
+  /*position: relative;*/
+  text-align: center;
+  background-color: black;
+  font-size: 220%;
+  padding: 10px 2px 10px 2px;
+    margin-bottom: var(--title-offset-minus-20)
+}
+
+.matrixConsole p {
+    color: green;
+    font-family: RobotoMono;
+    padding: 10px 0px 10px 0px;
+}
+.titleBreak{
+  /*position: relative;*/
+  text-align: center;
+  font-family: Muli;
+  font-size: 200%;
+    padding-top: var(--title-offset);
+}
+.titleBreak h2 {
+    background-color: var(--accent-color);
+  color: var(--text-color);
+    padding: 40px 0px 40px 0px;
+  text-align: center;
+  font-family: Muli;
+}
+.dropdownmenu {
+  display: inline-block;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/* Create a sticky/fixed navbar */
+#navbar {
+  overflow: hidden;
+  background-color: transparent;
+  padding: 10px 10px; /* Large padding which will shrink on scroll (using JS) */
+  transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+  position: fixed; /* Sticky/fixed navbar */
+  width: 100%;
+  vertical-align: middle;
+  top: 0; /* At the top */
+  z-index: 99;
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+}
+
+/* Links on mouse-over */
+.navbar-mobile {
+  overflow: hidden;
+  background-color: var(--backgroundColor);
+  width: 100%;
+  position: fixed; /* Sticky/fixed navbar */
+  vertical-align: middle;
+  top:80; /* At the top */
+  z-index: 99;
+}
+.navbar-mobile a {
+  color: var(--text-color);
+  background-color: var(--accent-color);
+  float: left;
+  text-align: center;
+  padding: 14px 14px 14px 14px;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+  display: inline-block;
+  margin:0;
+  width: 100%;
+  font-family: RobotoMono;
+  box-shadow: 5px 5px 5px #222;
+}
+
+/* Style the navbar links */
+#navbar a {
+  color: var(--background-color);
+  float: left;
+  text-align: center;
+  padding: 14px 14px;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  display: inline-block;
+  margin:0;
+  border-radius: 4px;
+  transition: 0.3s;
+  cursor: pointer;
+  font-family: RobotoMono;
+}
+
+/* Style the logo */
+#navbar #logo {
+  font-size: 35px;
+  transition: 0.4s;
+}
+
+/* Style the logo */
+#navbar a.name {
+  float: left;
+  padding: 12px;
+  vertical-align: middle;
+  font-size: 35px;
+  transition: 0.4s;
+  border-radius: 4px;
+  color: black;
+  text-decoration: none;
+  opacity: 0;
+  font-family: RobotoMono;
+}
+
+/* Links on mouse-over */
+#navbar-right a:hover {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+/* Style the active/current link */
+#navbar a.active {
+  border-bottom: 4px solid var(--main-color);
+}
+
+/* Display some links to the right */
+#navbar-right {
+  float: right;
+  padding-right: 16px;
+}
+
+/* Add responsiveness - on screens less than 580px wide, display the navbar vertically instead of horizontally */
+@media screen and (max-width: 580px) {
+  #navbar {
+    padding: 20px 10px !important; /* Use !important to make sure that JavaScript doesn't override the padding on small screens */
+  }
+  #navbar a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  #navbar-right {
+      float: none;
+      clear: both;
+      text-align: center;
+      width: 100%;
+  }
+}
