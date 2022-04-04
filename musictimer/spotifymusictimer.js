@@ -142,10 +142,10 @@ const APIController = (function() {
                     headers: {'Authorization': 'Bearer ' + access_token}
                 });
                 
-                _checkForResponseError(result, alert = true);
                 console.log("v1/me received result:");
                 console.log(result);
-                
+                _checkForResponseError(result, alert = true);
+               
                 const data = await result.json();
                 
                 if (data.product === "premium") {
