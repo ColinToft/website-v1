@@ -137,9 +137,17 @@ const APIController = (function() {
         } else {
             localStorage.removeItem(stateKey);
             if (access_token) {
-                const result = await fetch('https://api.spotify.com/v1/me', {
+                /* const result = await fetch('https://api.spotify.com/v1/me', {
                     method: 'GET',
                     headers: {'Authorization': 'Bearer ' + access_token}
+                }); */
+                const result = await fetch('https://api.spotify.com/v1/me', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + access_token           
+                     }
                 });
                 
                 console.log("v1/me received result:");
