@@ -152,7 +152,7 @@ const APIController = (function() {
                 
                 console.log("v1/me received result:");
                 console.log(result);
-                _checkForResponseError(result, alert = true);
+                // _checkForResponseError(result, alert = true);
                
                 const data = await result.json();
                 
