@@ -4,17 +4,13 @@
 }
 
 .listenOnSpotify button {
-    background-color: #1ed760;
+    background-color: #fff;
     border: none; /* Remove borders */
-    color: white; /* White text */
+    color: #1ed760;
     padding: 2px 16px; /* Some padding */
-    font-size: 21px; /* Set a font size */
+    font-size: 25px; /* Set a font size */
     vertical-align: middle;
     cursor: pointer; /* Mouse pointer on hover */
     border-radius: 20px;
     transition: 0.3s;
-}
-
-.fab {
-    font-size: 23px;
 }
