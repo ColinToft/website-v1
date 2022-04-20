@@ -946,7 +946,7 @@ const UIController = (function() {
                 '<div class="d-flex w-100 justify-content-between">' +
                     '<p class="mb-1">' + artist + '</h5>' +
                     '<div class="listenOnSpotify">' + 
-                        '<button onclick="window.open("https://github.com/ColinToft/remember", "_blank")";><i class="fab fa-spotify"></i>&nbsp; Listen on Spotify</button>' +
+                        '<button type="button" onclick="window.open("https://github.com/ColinToft/remember", "_blank")";><i class="fab fa-spotify"></i>&nbsp; Listen on Spotify</button>' +
                     '</div>' +
                 '</div>' +
             '</a>';
