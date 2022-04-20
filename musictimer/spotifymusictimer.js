@@ -938,7 +938,18 @@ const UIController = (function() {
             document.querySelector(DOMElements.selectSourceItem).insertAdjacentHTML('beforeend', html);
         },
         createTrack(id, index, name, artist, length) {
-            const html = '<a href="#" class="list-group-item list-group-item-action list-group-item-light" id="' + id + '">' + name + ' by ' + artist + ' (' + length.toHHMMSS() + ')' + '</a>';
+            const html = '<a href="#" class="list-group-item list-group-item-action list-group-item-light" id="' + id + '">' + 
+                '<div class="d-flex w-100 justify-content-between">' +
+                    '<h5 class="mb-1">' + name + '</h5>' +
+                    '<small>' + length.toHHMMSS() + '</small>' +
+                '</div>' +
+                '<div class="d-flex w-100 justify-content-between">' +
+                    '<p class="mb-1">' + artist + '</h5>' +
+                    '<div class="listenOnSpotify">' + 
+                        '<button onclick="window.open("https://github.com/ColinToft/remember", "_blank")";><i class="fab fa-spotify"></i>&nbsp; Listen on Spotify</button>' +
+                    '</div>' +
+                '</div>' +
+            '</a>';
             document.querySelector(DOMElements.divSongList).insertAdjacentHTML('beforeend', html);
         },
         startPlaylistAnimation() {
