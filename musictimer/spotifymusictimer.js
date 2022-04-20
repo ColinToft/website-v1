@@ -851,7 +851,7 @@ const UIController = (function() {
     function _makeTrackUnactive(id) {
         if (document.getElementById(id) !== null) { 
             document.getElementById(id).classList.remove("active");
-            document.getElementById(id).style.backgroundColor = "#b3e6e6";
+            document.getElementById(id).style.backgroundColor = "#ffffff";
             
             var t = document.getElementById(id).querySelector("#trackNameAndDuration").querySelector("#trackDuration").innerHTML;
             if (t.lastIndexOf("/") !== -1 && t.lastIndexOf("/") > t.lastIndexOf("(")) {
