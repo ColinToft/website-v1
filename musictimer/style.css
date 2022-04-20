@@ -7,10 +7,12 @@
     background-color: #fff;
     border: none; /* Remove borders */
     color: #1ed760;
-    padding: 2px 16px; /* Some padding */
-    font-size: 25px; /* Set a font size */
+    padding: 0px 6px; /* Some padding */
+    font-size: 35px; /* Set a font size */
     vertical-align: middle;
     cursor: pointer; /* Mouse pointer on hover */
+    line-height: 1;
     border-radius: 20px;
     transition: 0.3s;
+    margin-right: -2px;
 }

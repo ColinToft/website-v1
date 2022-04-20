@@ -942,9 +942,9 @@ const UIController = (function() {
                     '<small id="trackDuration">' + length.toHHMMSS() + '</small>' +
                 '</div>' +
                 '<div class="d-flex w-100 justify-content-between">' +
-                    '<p class="mb-1">' + artist + '</p>' +
+                    '<p class="mb-0">' + artist + '</p>' +
                     '<div class="listenOnSpotify">' + 
-                        '<button type="button" class="btn btn-success" onclick="window.open(\'https://open.spotify.com/track/' + id + '\', \'_blank\')";><i class="fab fa-spotify"></i></button>' +
+                        '<button type="button" class="btn" onclick="window.open(\'https://open.spotify.com/track/' + id + '\', \'_blank\')";><i class="fab fa-spotify"></i></button>' +
                     '</div>' +
                 '</div>' +
             '</a>';
