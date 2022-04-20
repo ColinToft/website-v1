@@ -7,7 +7,7 @@
     background-color: #1db954;
     border: none; /* Remove borders */
     color: white; /* White text */
-    padding: 2px 6px; /* Some padding */
+    padding: 2px 16px; /* Some padding */
     font-size: 21px; /* Set a font size */
     vertical-align: middle;
     cursor: pointer; /* Mouse pointer on hover */
@@ -16,5 +16,5 @@
 }
 
 .fab {
-    font-size: 25px;
+    font-size: 23px;
 }

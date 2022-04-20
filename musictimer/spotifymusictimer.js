@@ -844,12 +844,14 @@ const UIController = (function() {
     function _makeTrackActive(id) {
         if (document.getElementById(id) !== null) { 
             document.getElementById(id).classList.add("active");
+            document.getElementById(id).style.backgroundColor = "#007bff";
         }
     }
     
     function _makeTrackUnactive(id) {
         if (document.getElementById(id) !== null) { 
             document.getElementById(id).classList.remove("active");
+            document.getElementById(id).style.backgroundColor = "#b3e6e6";
             
             var t = document.getElementById(id).querySelector("#trackNameAndDuration").querySelector("#trackDuration").innerHTML;
             if (t.lastIndexOf("/") !== -1 && t.lastIndexOf("/") > t.lastIndexOf("(")) {
