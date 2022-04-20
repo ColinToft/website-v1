@@ -875,7 +875,7 @@ const UIController = (function() {
             return;
         }
         if (document.getElementById(currentTrack)) {
-            var t = document.getElementById(id).querySelector("#trackNameAndDuration").querySelector("#trackDuration").innerHTML;
+            var t = document.getElementById(currentTrack).querySelector("#trackNameAndDuration").querySelector("#trackDuration").innerHTML;
             
             if (t.lastIndexOf("/") !== -1 && t.lastIndexOf("/") > t.lastIndexOf("(")) {
                 t = t.substr(0, t.lastIndexOf("(") + 1) + progress + t.substr(t.lastIndexOf("/"));
@@ -883,7 +883,7 @@ const UIController = (function() {
                 t = t.substr(0, t.lastIndexOf("(") + 1) + progress + "/" + t.substr(t.lastIndexOf("(") + 1);
             }
             
-            document.getElementById(id).querySelector("#trackNameAndDuration").querySelector("#trackDuration").innerHTML = t;
+            document.getElementById(currentTrack).querySelector("#trackNameAndDuration").querySelector("#trackDuration").innerHTML = t;
         }
     }
     
