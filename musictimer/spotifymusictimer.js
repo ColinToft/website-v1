@@ -207,7 +207,7 @@ const APIController = (function() {
         };
     }
     
-    const _getMultipleItems = async (token, link, getData, updateInfoText, infoMessage) => {
+    const _getMultipleItems = async (token, link, getData, maxOffset, updateInfoText, infoMessage) => {
         var result = await fetch(link, {
             method: 'GET',
             headers: {'Authorization': 'Bearer ' + token}
@@ -225,8 +225,6 @@ const APIController = (function() {
         }
         data = getData(data);
         var items = data.items;
-
-        console.log(`getting data with length ${data.total}`);
         
         var timeToSend = (new Date()).getTime();
         var requestsAtATime = 100;
@@ -294,7 +292,7 @@ const APIController = (function() {
                 }
                 
                 offset += data.limit;
-                if (offset >= data.total) break;
+                if (offset >= data.total || offset > maxOffset) break;
             }
             
             await Promise.allSettled(promises);
@@ -304,11 +302,11 @@ const APIController = (function() {
     }
     
     const _getUserPlaylists = async (token, userID) => {        
-        return await _getMultipleItems(token, 'https://api.spotify.com/v1/users/' + userID + '/playlists?limit=50', (d) => d);
+        return await _getMultipleItems(token, 'https://api.spotify.com/v1/users/' + userID + '/playlists?limit=50', (d) => d, 100000);
     }
     
     const _getUserArtists = async (token) => {        
-        return await _getMultipleItems(token, 'https://api.spotify.com/v1/me/following?type=artist&limit=50', (d) => d.artists);
+        return await _getMultipleItems(token, 'https://api.spotify.com/v1/me/following?type=artist&limit=50', (d) => d.artists, 49);
     }
     
     const _getMultipleItemsFromIDs = async (token, link, getItems, IDs, limit, updateInfoText, infoMessage) => {
@@ -367,7 +365,7 @@ const APIController = (function() {
                         }
                     }
                 }
-            }).catch((error) => console.log("oops: " + error));
+            }).catch((error) => console.log("error in _getMultipleItems: " + error));
         };
 
         var offset = 0;
@@ -588,7 +586,7 @@ const APIController = (function() {
         }
         
         var tracks = await _getMultipleItems(token, "https://api.spotify.com/v1/me/tracks?limit=50",
-                                             (d) => d, updateInfoText, "Loading liked songs");
+                                             (d) => d, Infinity, updateInfoText, "Loading liked songs");
             
         likedSongs = tracks.map(a => a.track);
         likedSongs = likedSongs.filter((track, index) => tracks.slice(0, index).every((e) => !(e.name === track.name && e.artists[0].name === track.artists[0].name)));
@@ -600,14 +598,14 @@ const APIController = (function() {
         if (playlistID === "liked songs") return await _getLikedSongs(token, updateInfoText);
         
         var tracks = await _getMultipleItems(token, 'https://api.spotify.com/v1/playlists/' + playlistID + '/tracks?limit=100',
-            (d) => d, updateInfoText, "Loading tracks");
+            (d) => d, 100000, updateInfoText, "Loading tracks");
                 
         return tracks.map(a => a.track);
     }
     
     const _getTracksFromArtist = async (token, artistName, updateInfoText) => {
         var tracks = await _getMultipleItems(token, 'https://api.spotify.com/v1/search?type=track&limit=50&q=artist:' + artistName,
-            (d) => d.tracks, updateInfoText, "Loading tracks");
+            (d) => d.tracks, 1000, updateInfoText, "Loading tracks");
         
         tracks = tracks.filter(track => track.artists.some((e) => e.name === artistName));
         
