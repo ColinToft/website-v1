@@ -225,6 +225,8 @@ const APIController = (function() {
         }
         data = getData(data);
         var items = data.items;
+
+        console.log(`getting data with length ${data.total}`);
         
         var timeToSend = (new Date()).getTime();
         var requestsAtATime = 100;
@@ -237,7 +239,6 @@ const APIController = (function() {
             }).then(async (newResult) => {
                 if (_checkForResponseError(newResult, false)) {
                     if (newResult.status === 503) {
-                        console.log("got 503");
                         await sendRequest(requestOffset);
                     } else if (newResult.status === 429) {
                         retry = newResult.headers.get("Retry-After");
@@ -248,7 +249,6 @@ const APIController = (function() {
                         }
                         await delay(retry * 1000 + 1000).then(() => sendRequest(requestOffset));
                     } else {
-                        console.log("got another error: " + newResult.status);
                         _checkForResponseError(newResult);
                     }
                 } else {
