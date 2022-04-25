@@ -279,7 +279,7 @@ const APIController = (function() {
 
         var offset = data.limit;
         
-        while (offset < data.total) {
+        while (offset < data.total && offset < maxOffset) {
             var promises = [];
             loweredRequestRate = false;
             
@@ -292,7 +292,7 @@ const APIController = (function() {
                 }
                 
                 offset += data.limit;
-                if (offset >= data.total || offset > maxOffset) break;
+                if (offset >= data.total || offset >= maxOffset) break;
             }
             
             await Promise.allSettled(promises);
