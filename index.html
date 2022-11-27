@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colin Toft</title>
-    <meta name="Description" content="Colin Toft's personal site. Click to see personal experience, projects, and more!">
-    <script type="text/javascript" src="animations.js"></script>
-</head>
-<body onload="init();">
-    <div id="navbar">
-        <a class="name">Colin Toft</a>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+            integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+            crossorigin="anonymous"
+        />
+        <meta
+            charset="utf-8"
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Colin Toft</title>
+        <meta
+            name="Description"
+            content="Colin Toft's personal site. Click to see personal experience, projects, and more!"
+        />
+        <script type="text/javascript" src="animations.js"></script>
+    </head>
+    <body onload="init();">
+        <div id="navbar">
+            <a class="name">Colin Toft</a>
 
-        <div id="navbar-right">
-            <a class="button active" id="homeButton" href="#home">Home</a>
-            <a class = "button" id="projectsButton" href="#projectTitle">Projects</a>
-            <a class = "button" id="workExperienceButton" href="#workTitle">Work Experience</a>
-                <a class = "button" id="educationButton" href="#educationTitle">Education</a>
-            <a class = "button" id="contactMeButton" href="#contactTitle">Contact</a>
+            <div id="navbar-right">
+                <a class="button active" id="homeButton" href="#home">Home</a>
+                <a class="button" id="projectsButton" href="#projectTitle"
+                    >Projects</a
+                >
+                <a class="button" id="workExperienceButton" href="#workTitle"
+                    >Work Experience</a
+                >
+                <a class="button" id="educationButton" href="#educationTitle"
+                    >Education</a
+                >
+                <a class="button" id="contactMeButton" href="#contactTitle"
+                    >Contact</a
+                >
+            </div>
         </div>
 
-    </div>
+        <div id="nameDiv">
+            <div style="height: 20vw"></div>
+            <div id="coverImageContainer"></div>
+            <div class="centered" id="name">>Colin Toft_</div>
+            <div style="clear: both; height: 5vw"></div>
+        </div>
 
-    <div id="nameDiv">
-        <div style="height: 20vw;"></div>
-        <div id="coverImageContainer"></div>
-        <div class="centered" id="name">>Colin Toft_</div>
-        <div style="clear: both; height: 5vw;"></div>
-    </div>  
+        <div class="matrixConsole">
+            <p id="matrixText"></p>
+        </div>
 
-    <div class="matrixConsole">
-        <p id="matrixText"></p>
-    </div>
-
-<!--
+        <!--
     <table    align= "center" style="width:70%">
         <tr>
             <td><img src="https://img.icons8.com/ios/100/000000/internet.png"></td>
@@ -54,40 +76,99 @@
     </table>
 -->
 
-    <div id="projectTitle" class="titleBreak">
-        <h2 id="projects">Projects</h2>
-    </div>
-
-    <div id="projectBody" class="bodyType">
-        <h3>Spotify Music Timer</h3>
-        <p>A website that creates playlists of a specific length, based on the music in your Spotify account. Programmed using HTML (Bootstrap 4), CSS, Javascript and Spotify's Web API.</p>
-        <div class="linkButton">
-            <button type="button"    onclick="window.open('https://colintoft.com/musictimer', '_blank')";><i class='fab'></i>Go to Website</button>
+        <div id="projectTitle" class="titleBreak">
+            <h2 id="projects">Projects</h2>
         </div>
 
-        <h3>Surrounded</h3>
-        <p>A simple arcade-style game created using Unity and C#.</p>
-        <div class="linkButton">
-            <button type="button"    onclick="window.open('https://colintoft.com/surrounded', '_blank')";><i class='fab'></i>Play Game</button>
-        </div>
-            
-        <h3>Shape Sprint</h3>
-        <p>A Geometry Dash clone created in Java and Swing as the final project for my grade 11 computer science course.</p>
-        <iframe width="471" height="265" src="https://www.youtube.com/embed/aXmeX1_r5tk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div class="linkButton">
-            <button type="button"    onclick="window.open('https://github.com/ColinToft/shapesprint', '_blank')";><i class='fab fa-github'></i></button>
-            <button type="button" name="dropboxbuttom" onclick="window.open('https://www.dropbox.com/s/79bq4utsyhm7ocf/ShapeSprint.jar?dl=0', '_blank')";><i class='fab'></i>Download and Play</button>
-            
-        </div>
-            
-        <h3>Remember</h3>
-        <p>Dissatisfied with the complexity and unnecessary features of many calendar applications, I decided to create a more simplistic program that allows for the viewing and creation of events in a single-page view. The list layout allows you to see all upcoming events at a glance, and the sidebar allows you to create new events by simply tapping on the date. Created in Python with Pythonista for iOS.</p>
-        <iframe width="471" height="265" src="https://www.youtube.com/embed/W2Ua6q78pWw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div class="linkButton">
-            <button type="button" onclick="window.open('https://github.com/ColinToft/remember', '_blank')";><i class='fab fa-github'></i></button>
-        </div>
-        
-        <!--
+        <div id="projectBody" class="bodyType">
+            <h3>Spotify Music Timer</h3>
+            <p>
+                A website that creates playlists of a specific length, based on
+                the music in your Spotify account. Programmed using HTML
+                (Bootstrap 4), CSS, Javascript and Spotify's Web API.
+            </p>
+            <div class="linkButton">
+                <button
+                    type="button"
+                    onclick="window.open('https://colintoft.com/musictimer', '_blank')"
+                    ;
+                >
+                    <i class="fab"></i>Go to Website
+                </button>
+            </div>
+
+            <h3>Surrounded</h3>
+            <p>A simple arcade-style game created using Unity and C#.</p>
+            <div class="linkButton">
+                <button
+                    type="button"
+                    onclick="window.open('https://colintoft.com/surrounded', '_blank')"
+                    ;
+                >
+                    <i class="fab"></i>Play Game
+                </button>
+            </div>
+
+            <h3>Shape Sprint</h3>
+            <p>
+                A Geometry Dash clone created in Java and Swing as the final
+                project for my grade 11 computer science course.
+            </p>
+            <iframe
+                width="471"
+                height="265"
+                src="https://www.youtube.com/embed/aXmeX1_r5tk"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+            <div class="linkButton">
+                <button
+                    type="button"
+                    onclick="window.open('https://github.com/ColinToft/shapesprint', '_blank')"
+                    ;
+                >
+                    <i class="fab fa-github"></i>
+                </button>
+                <button
+                    type="button"
+                    name="dropboxbuttom"
+                    onclick="window.open('https://www.dropbox.com/s/79bq4utsyhm7ocf/ShapeSprint.jar?dl=0', '_blank')"
+                    ;
+                >
+                    <i class="fab"></i>Download and Play
+                </button>
+            </div>
+
+            <h3>Remember</h3>
+            <p>
+                Dissatisfied with the complexity and unnecessary features of
+                many calendar applications, I decided to create a more
+                simplistic program that allows for the viewing and creation of
+                events in a single-page view. The list layout allows you to see
+                all upcoming events at a glance, and the sidebar allows you to
+                create new events by simply tapping on the date. Created in
+                Python with Pythonista for iOS.
+            </p>
+            <iframe
+                width="471"
+                height="265"
+                src="https://www.youtube.com/embed/W2Ua6q78pWw"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+            <div class="linkButton">
+                <button
+                    type="button"
+                    onclick="window.open('https://github.com/ColinToft/remember', '_blank')"
+                    ;
+                >
+                    <i class="fab fa-github"></i>
+                </button>
+            </div>
+
+            <!--
         <h3>Tree Game</h3>
         <p>A clicker game created in the style of <i>Universal Paperclips</i>. Programmed using HTML, CSS and Javascript.</p>
         <div class="linkButton">
@@ -103,83 +184,210 @@
             <button type="button" onclick="window.open('https://github.com/ColinToft/minesweeper', '_blank')";><i class='fab fa-github'></i></button>
         </div>
         -->
-            
-        <h3>Middle C</h3>
-        <p>During my free time, I have been hard at work creating acoustic and electronic music! My most recent project is an electronic album called Continuum, which is now released on streaming services worldwide! You can listen to the album below:</p>
-        
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLZ6QsGiOiHMui2urao_Uk0zVsF6CyJEtc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        
-        <div class="linkButton">
-            <button type="button" name="rlmbutton" onclick="window.open('https://www.youtube.com/channel/UCBGu6kMfz043zo7lzN4oUzQ', '_blank')";><i class='fab fa-youtube'></i>&nbsp; Middle C on YouTube</button>
+
+            <h3>Middle C</h3>
+            <p>
+                During my free time, I have been hard at work creating acoustic
+                and electronic music! My most recent project is an electronic
+                album called Continuum, which is now released on streaming
+                services worldwide! You can listen to the album below:
+            </p>
+
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/videoseries?list=PLZ6QsGiOiHMui2urao_Uk0zVsF6CyJEtc"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+
+            <div class="linkButton">
+                <button
+                    type="button"
+                    name="rlmbutton"
+                    onclick="window.open('https://www.youtube.com/channel/UCBGu6kMfz043zo7lzN4oUzQ', '_blank')"
+                    ;
+                >
+                    <i class="fab fa-youtube"></i>&nbsp; Middle C on YouTube
+                </button>
+            </div>
+
+            <h3>LEGO Mindstorms Army Tank</h3>
+            <p>
+                A model WWII tank created with LEGO Mindstorms and programmed
+                with Java using LeJOS.
+            </p>
+
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/p9YtKTRKbmk"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+
+            <!--
+            <h3>Tabletop Robot</h3>
+            <p>A robot created for the TEJ4M computer engineering course. This robot uses entirely analog components (no microprocessor or computer of any kind) and stays on the surface of a table using edge sensors.</p>
+
+            <iframe
+                width="471"
+                height="265"
+                src="https://www.youtube.com/embed/DsSks55vm2A"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+            <img src="pictures/pumpkinBot.webp" style="width: 30%" />
+            -->
+
+            <h3>Ear Training Applications</h3>
+            <p>
+                Ear training programs created in Python using Pythonista for
+                iOS. They allow the user to practise identifying intervals,
+                chords and chord progressions, which are a part of the Royal
+                Conservatory of Music piano exams.
+            </p>
+            <img
+                src="pictures/eartraining2.webp"
+                style="width: 20%; margin: 0 2vw 20px 0"
+            />
+            <img
+                src="pictures/eartraining1.webp"
+                style="width: 20%; margin: 0 2vw 20px 2vw"
+            />
+            <div style="clear: both"></div>
         </div>
-        
-        <h3>LEGO Mindstorms Army Tank</h3>
-        <p>A model WWII tank created with LEGO Mindstorms and programmed with Java using LeJOS.</p>
-        
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/p9YtKTRKbmk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            
-        <h3>Tabletop Robot</h3>
-        <p>A robot created for the TEJ4M computer engineering course. This robot uses entirely analog components (no microprocessor or computer of any kind) and stays on the surface of a table using edge sensors.</p>
-        
-        <iframe width="471" height="265" src="https://www.youtube.com/embed/DsSks55vm2A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <img src="pictures/pumpkinBot.webp" style="width: 30%;" />
-        
-        <h3>Ear Training Applications</h3>
-        <p>Ear training programs created in Python using Pythonista for iOS. They allow the user to practise identifying intervals, chords and chord progressions, which are a part of the Royal Conservatory of Music piano exams.</p>
-        <img src="pictures/eartraining2.webp" style="width: 20%; margin: 0 2vw 20px 0" />
-        <img src="pictures/eartraining1.webp" style="width: 20%; margin: 0 2vw 20px 2vw" />
-        <div style="clear: both;"></div>  
-    </div>
 
-    <div id="workTitle" class="titleBreak">
-        <h2 id="experience">Work Experience</h2>
-    </div>
-    
-    <div id="workBody" class="bodyType">
-        <h3>City of London Aquatic Services - Instructor Guard (2020-21)</h3>
-        <img src="pictures/lifeguard.webp" style="width: 30%; float: right; margin: 0 0 40px 2vw;"/>
-        <p style="float: none;">From summer 2020 to summer 2021, I worked as an Instructor Guard for the City of London. I guarded recreational swims and lane swims, as well as preparing and teaching swimming lessons for swimmers aged 1-12!</p>
+        <div id="workTitle" class="titleBreak">
+            <h2 id="experience">Co-op Work Experience</h2>
+        </div>
 
-        <h3 style="clear: both;">Ontario Volleyball Association - Local Referee (2019-20)</h3>
-        <img src="pictures/ref2.webp" style="width: 30%; float: left; margin: 0 2vw 40px 0" />
-        <p style="float: none;">As a volleyball referee, I officiated at OVA competitive tournaments and at the junior highschool level.</p>
+        <!--
+        <div id="workBody" class="bodyType">
+            <h3>
+                City of London Aquatic Services - Instructor Guard (2020-21)
+            </h3>
+            <img
+                src="pictures/lifeguard.webp"
+                style="width: 30%; float: right; margin: 0 0 40px 2vw"
+            />
+            <p style="float: none">
+                From summer 2020 to summer 2021, I worked as an Instructor Guard
+                for the City of London. I guarded recreational swims and lane
+                swims, as well as preparing and teaching swimming lessons for
+                swimmers aged 1-12!
+            </p>
 
-        <h3 style="clear: both;">City of London Recreation Services - Recreational Program Instructor (2019-20)</h3>
-        <p>I planned and led recreational children programs in volleyball as well as a Chemistry Kids program.</p>
-    </div>
+            <h3 style="clear: both">
+                Ontario Volleyball Association - Local Referee (2019-20)
+            </h3>
+            <img
+                src="pictures/ref2.webp"
+                style="width: 30%; float: left; margin: 0 2vw 40px 0"
+            />
+            <p style="float: none">
+                As a volleyball referee, I officiated at OVA competitive
+                tournaments and at the junior highschool level.
+            </p>
 
-    <div id="educationTitle" class="titleBreak">
-        <h2 id="education">Education</h2>
-    </div>
+            <h3 style="clear: both">
+                City of London Recreation Services - Recreational Program
+                Instructor (2019-20)
+            </h3>
+            <p>
+                I planned and led recreational children programs in volleyball
+                as well as a Chemistry Kids program.
+            </p>
+        </div>
+        -->
+        <div id="workBody" class="bodyType">
+            <h3>
+                Radix Labs - Software Engineer (Fall 2022, part time starting
+                Winter 2022)
+            </h3>
+            <!-- Add the logo image with width 15% but a maximum of 200px -->
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTJ0Yx31wmr-DdaBCaPU2lxIFZAXPIOsWeParIsd8&s"
+                style="width: 15%; max-width: 130px; float: right; margin: 0 0 40px 2vw"
+            />
+            <p style="float: none">
+                <ul>
+                    <li>Co-developed automation software for a pharmaceutical company to predict and measure metabolites with a mass spectrometer</li>
+                    <li>Created a parser that will allow scientists to create their own workflows to measure and process data</li>
+                    <li>Revamped the documentation and onboarding for new employees</li>
+                </ul>
+            </p>
+        </div>
 
-    <div id="educationBody" class="bodyType">
-        <h3>University of Waterloo (2021-2026)</h3>
-        <ul>
-            <li>Bachelor of Computer Science (BCS)</li>
-            <li>Digital Hardware Specialization</li>
-            <li>Member of University of Waterloo Robotics Team</li>
-        </ul>
-        <h3>Sir Frederick Banting Secondary School (2017-2021)</h3>
-        <ul>
-            <li>Computer Studies Certificate</li>
-            <li>Specialist High Skills Major in Business</li>
-            <li>Ontario French Immersion Certificate</li>
-        </ul>
-    </div>
-        
-    <div id="contactTitle" class="titleBreak">
-        <h2 id="contact">Contact</h2>
-    </div>
+        <div id="roboticsTitle" class="titleBreak">
+            <h2 id="robotics">Robotics</h2>
+        </div>
 
-    <div class="bodyType" style="margin-bottom: 0px">
-        <h3>If you would like to reach me, here is my email address:</h3>
-        <p>cwt1078@gmail.com</p>
-    </div>
+        <div id="roboticsBody" class="bodyType">
+            <h3>
+                University of Waterloo Robotics Team - Software Team (2022-)
+            </h3>
+            <p style="float: none">
+                <ul>
+                    <li>Used C++ with ROS2 and ros2_control to design complex robot software</li>
+                    <li>Worked on a CAN interface to allow communication between the main processor and the rest of the robot</li>
+                </ul>
+            </p>
 
+            <h3>
+                Sir Frederick Banting Secondary School - Software Mentor (2022-)
+            </h3>
+            <p style="float: none">
+                <ul>
+                    <li>Attended weekly meetings to assist students writing robot software for First Robotics Competition</li>
+                    <li>Ran a programming session to teach high school students how to use Git and Object-Oriented Programming</li>
+                </ul>
+            </p>
+        </div>
 
-</body>
-<footer>
-    <p style="float: left">Colin Toft | <a style="text-decoration:none; color: var(--text-color)" href="https://github.com/ColinToft"><i class='fab fa-github'></i> GitHub</a></p>
-    <p style="float: right">© Colin Toft 2021</p>
-</footer>
+        <div id="educationTitle" class="titleBreak">
+            <h2 id="education">Education</h2>
+        </div>
+
+        <div id="educationBody" class="bodyType">
+            <h3>University of Waterloo (2021-2026)</h3>
+            <ul>
+                <li>Bachelor of Computer Science (BCS)</li>
+                <li>Received Term Distinction for all 3 terms</li>
+                <li>Digital Hardware Specialization</li>
+                <li>Member of University of Waterloo Robotics Team</li>
+            </ul>
+            <h3>Sir Frederick Banting Secondary School (2017-2021)</h3>
+            <ul>
+                <li>Computer Studies Certificate</li>
+                <li>Specialist High Skills Major in Business</li>
+                <li>Ontario French Immersion Certificate</li>
+            </ul>
+        </div>
+
+        <div id="contactTitle" class="titleBreak">
+            <h2 id="contact">Contact</h2>
+        </div>
+
+        <div class="bodyType" style="margin-bottom: 0px">
+            <h3>If you would like to reach me, here is my email address:</h3>
+            <p>cwt1078@gmail.com</p>
+        </div>
+    </body>
+    <footer>
+        <p style="float: left">
+            Colin Toft |
+            <a
+                style="text-decoration: none; color: var(--text-color)"
+                href="https://github.com/ColinToft"
+                ><i class="fab fa-github"></i> GitHub</a
+            >
+        </p>
+        <p style="float: right">© Colin Toft 2022</p>
+    </footer>
 </html>
