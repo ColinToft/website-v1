@@ -1,7 +1,7 @@
 const APIController = (function () {
     const clientID = "09cea9a2db4742578a42d981c2582261";
-    // const redirectURI = "https://www.colintoft.com/musictimer/";
-    const redirectURI = "http://127.0.0.1:8080/";
+    const redirectURI = "https://www.colintoft.com/musictimer/";
+    // const redirectURI = "http://127.0.0.1:8080/";
     const scope =
         "user-read-private playlist-read-private playlist-read-collaborative user-modify-playback-state playlist-modify-public playlist-modify-private user-library-read user-follow-read user-read-playback-state";
 
