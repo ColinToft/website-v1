@@ -305,7 +305,7 @@ const APIController = (function () {
         let error = errObj.error;
         console.error("Displaying error:");
         console.error(error);
-        /* window.alert(
+        window.alert(
             "Error " +
                 error.status +
                 "\n" +
@@ -313,7 +313,6 @@ const APIController = (function () {
                 "\n" +
                 error.message
         );
-        */
     };
 
     /**
