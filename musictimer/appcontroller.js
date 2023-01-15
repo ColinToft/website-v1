@@ -632,6 +632,10 @@ const AppController = (function (UICtrl, APICtrl, PlaylistGenerator) {
         APICtrl.redirectToSpotifyAuthorizeEndpoint();
     });
 
+    DOMInputs.logout.addEventListener("click", function () {
+        APICtrl.logoutFromSpotify();
+    });
+
     return {
         init() {
             start();

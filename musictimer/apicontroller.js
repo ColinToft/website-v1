@@ -1,7 +1,7 @@
 const APIController = (function () {
     const clientID = "09cea9a2db4742578a42d981c2582261";
-    const redirectURI = "https://www.colintoft.com/musictimer/";
-    // const redirectURI = "http://127.0.0.1:8080/";
+    // const redirectURI = "https://www.colintoft.com/musictimer/";
+    const redirectURI = "http://127.0.0.1:8080/";
     const scope =
         "user-read-private playlist-read-private playlist-read-collaborative user-modify-playback-state playlist-modify-public playlist-modify-private user-library-read user-follow-read user-read-playback-state";
 
@@ -54,10 +54,11 @@ const APIController = (function () {
             new TextEncoder().encode(codeVerifier)
         );
 
-        return btoa(String.fromCharCode(...new Uint8Array(digest)))
-            .replace(/=/g, "")
-            .replace(/\+/g, "-")
-            .replace(/\//g, "_");
+        // Convert to base64 using Buffer
+        // const base64 = Buffer.from(digest).toString("base64");
+
+        const base64 = btoa(String.fromCharCode(...new Uint8Array(digest)));
+        return base64.replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
     }
 
     const _redirectToSpotifyAuthorizeEndpoint = async () => {
@@ -133,7 +134,15 @@ const APIController = (function () {
             const data = await addThrowErrorToFetch(reponse);
             await processTokenResponse(data);
         } catch (errObj) {
-            showErrorAlert(errObj);
+            // showErrorAlert(errObj);
+            console.log(errObj);
+            if (errObj.error === "invalid_grant") {
+                console.log("Invalid grant, logging out...");
+                _logout();
+            } else {
+                // showErrorAlert(errObj);
+                console.error(errObj);
+            }
         }
     };
 
@@ -148,7 +157,7 @@ const APIController = (function () {
         }
     }
 
-    function logout() {
+    function _logout() {
         localStorage.clear();
         window.location.reload();
     }
@@ -173,6 +182,7 @@ const APIController = (function () {
             console.log("getting user data");
             console.log(data);
             $("login").hide();
+            $("btn_logout").show();
             $("loggedin").show();
 
             if (data.product === "premium") {
@@ -295,7 +305,7 @@ const APIController = (function () {
         let error = errObj.error;
         console.error("Displaying error:");
         console.error(error);
-        window.alert(
+        /* window.alert(
             "Error " +
                 error.status +
                 "\n" +
@@ -303,6 +313,7 @@ const APIController = (function () {
                 "\n" +
                 error.message
         );
+        */
     };
 
     /**
@@ -328,6 +339,7 @@ const APIController = (function () {
         } else {
             // we are not logged in so show the login button
             $("#login").show();
+            $("#btn_logout").hide();
             $("#loggedin").hide();
             return false;
         }
@@ -989,6 +1001,9 @@ const APIController = (function () {
         },
         loginToSpotify() {
             _loginToSpotify();
+        },
+        logoutFromSpotify() {
+            _logout();
         },
     };
 })();

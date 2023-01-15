@@ -22,6 +22,7 @@ const UIController = (function () {
         buttonRegenerate: "#btn_regenerate",
         buttonShuffle: "#btn_shuffle",
         buttonLogin: "#btn_login",
+        buttonLogout: "#btn_logout",
         divSongList: ".song-list",
         trackClass: ".list-group-item",
         hfToken: "#hidden_token",
@@ -192,6 +193,7 @@ const UIController = (function () {
                 ),
                 shuffle: document.querySelector(DOMElements.buttonShuffle),
                 login: document.querySelector(DOMElements.buttonLogin),
+                logout: document.querySelector(DOMElements.buttonLogout),
                 tracks: document.querySelector(DOMElements.divSongList),
                 hfToken: document.querySelector(DOMElements.hfToken),
             };
