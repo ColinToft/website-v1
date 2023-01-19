@@ -842,7 +842,7 @@ const APIController = (function () {
                 "PUT"
             );
         } catch (errObj) {
-            if (errObj.erro.status === 404) {
+            if (errObj.error.status === 404) {
                 window.alert(
                     "No active device found. Open Spotify so we can find your device! You may need to start playing music first."
                 );
