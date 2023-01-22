@@ -860,10 +860,12 @@ const APIController = (function () {
                 JSON.stringify({ uris })
             );
         } catch (errObj) {
-            if (errObj.error.status === 404 && !notified) {
-                window.alert(
-                    "No active device found. Open Spotify so we can find your device! You may need to start playing music first."
-                );
+            if (errObj.error.status === 404) {
+                if (!notified) {
+                    window.alert(
+                        "No active device found. Open Spotify so we can find your device! You may need to start playing music first."
+                    );
+                }
             } else {
                 showErrorAlert(errObj);
             }
