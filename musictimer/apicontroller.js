@@ -861,9 +861,11 @@ const APIController = (function () {
             );
         } catch (errObj) {
             if (errObj.error.status === 404) {
-                window.alert(
-                    "No active device found. Open Spotify so we can find your device! You may need to start playing music first."
-                );
+                if (!notified) {
+                    window.alert(
+                        "No active device found. Open Spotify so we can find your device! You may need to start playing music first."
+                    );
+                }
             } else {
                 showErrorAlert(errObj);
             }
