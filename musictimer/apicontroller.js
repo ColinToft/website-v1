@@ -21,6 +21,9 @@ const APIController = (function () {
 
     var isReloading = false;
 
+    var loweredRequestRate = false;
+    var requestsAtATime = 100;
+
     let keyNames = [
         "C minor",
         "C# minor",
@@ -301,6 +304,34 @@ const APIController = (function () {
         }
     }
 
+    /**
+     * Calls makeAPIRequest, but retries if we get a 429 error
+     */
+    async function makeAPIRequestWithRetry(url, method, body) {
+        try {
+            return await makeAPIRequest(url, method, body);
+        } catch (errObj) {
+            if (errObj.error.status === 429) {
+                if (!loweredRequestRate) {
+                    requestsAtATime = Math.round(requestsAtATime * 0.5);
+                    loweredRequestRate = true;
+                }
+
+                retry = errObj.response.headers.get("Retry-After");
+                await delay(retry * 1000 + 1000);
+                return await makeAPIRequestWithRetry(url, method, body);
+            } else if (errObj.error.status === 500) {
+                // These errors seem to happen randomly, so we'll just retry after a second
+                await delay(1000);
+                return await makeAPIRequestWithRetry(url, method, body);
+            } else {
+                // Display error message
+                showErrorAlert(errObj);
+                return null;
+            }
+        }
+    }
+
     const showErrorAlert = (errObj) => {
         let error = errObj.error;
         console.error("Displaying error:");
@@ -360,30 +391,17 @@ const APIController = (function () {
         updateInfoText,
         infoMessage
     ) => {
-        try {
-            var data = await makeAPIRequest(link, "GET");
-        } catch (errObj) {
-            if (errObj.error.status === 429) {
-                retry = errObj.response.headers.get("Retry-After");
-                await delay(retry * 1000 + 1000);
-            } else {
-                // Display error message
-                showErrorAlert(errObj);
-                return [];
-            }
-        }
+        var data = await makeAPIRequestWithRetry(link, "GET");
         data = getData(data);
         var items = data.items;
 
         var timeToSend = new Date().getTime();
-        var requestsAtATime = 100;
-        var loweredRequestRate = false;
 
         sendRequest = async (initialDelay, requestOffset) => {
             await delay(initialDelay);
             let newLink = link + "&offset=" + requestOffset;
             try {
-                var data = await makeAPIRequest(newLink, "GET");
+                var data = await makeAPIRequestWithRetry(newLink, "GET");
                 data = getData(data);
                 items = items.concat(data.items);
 
@@ -398,19 +416,9 @@ const APIController = (function () {
                     );
                 }
             } catch (errObj) {
-                if (errObj.error.status === 429) {
-                    retry = errObj.response.headers.get("Retry-After");
-                    if (!loweredRequestRate) {
-                        requestsAtATime = Math.round(requestsAtATime * 0.5);
-                        loweredRequestRate = true;
-                    }
-                    // Try again
-                    await sendRequest(retry * 1000 + 1000, requestOffset);
-                } else {
-                    // Display error message
-                    showErrorAlert(errObj);
-                    return null;
-                }
+                // Display error message
+                showErrorAlert(errObj);
+                return null;
             }
         };
 
@@ -461,8 +469,6 @@ const APIController = (function () {
     ) => {
         var items = Array(IDs.length);
         var timeToSend = new Date().getTime();
-        var requestsAtATime = 100;
-        var loweredRequestRate = false;
 
         sendRequest = async (initialDelay, requestOffset) => {
             await delay(initialDelay);
@@ -471,7 +477,7 @@ const APIController = (function () {
                 "?ids=" +
                 IDs.slice(requestOffset, requestOffset + limit).join(",");
             try {
-                var data = await makeAPIRequest(newLink, "GET");
+                var data = await makeAPIRequestWithRetry(newLink, "GET");
                 let newItems = getItems(data);
 
                 var args = [requestOffset, newItems.length].concat(newItems);
@@ -486,19 +492,9 @@ const APIController = (function () {
                     );
                 }
             } catch (errObj) {
-                if (errObj.error.status === 429) {
-                    retry = errObj.response.headers.get("Retry-After");
-                    if (!loweredRequestRate) {
-                        requestsAtATime = Math.round(requestsAtATime * 0.5);
-                        loweredRequestRate = true;
-                    }
-                    // Try again
-                    await sendRequest(retry * 1000 + 1000, requestOffset);
-                } else {
-                    // Display error message
-                    showErrorAlert(errObj);
-                    return null;
-                }
+                // Display error message
+                showErrorAlert(errObj);
+                return null;
             }
         };
 
