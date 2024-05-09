@@ -49,7 +49,7 @@
 
                 <input type="hidden" id="hidden_token" />
                 <div id="generator_options">
-                    <div class="form-group row mt-2 px-0">
+                    <div class="form-group row mt-4 px-0">
                         <label
                             for="length"
                             class="form-label col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2"
@@ -317,15 +317,6 @@
         <script id="user-profile-template" type="text/x-handlebars-template">
             <h4>Currently logged in as
                 <a href="{{external_urls.spotify}}">{{display_name}}</a>&nbsp; ({{product}})</h4>
-            <div class="media">
-                <div class="pull-left">
-                    <img
-                        class="media-object"
-                        width="150"
-                        src="{{images.0.url}}"
-                    />
-                </div>
-            </div>
         </script>
 
         <script id="oauth-template" type="text/x-handlebars-template">
