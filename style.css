@@ -57,7 +57,7 @@ body{
   height: 40vw;
   width: 40vw;
   background-image: url(pictures/cover.webp);
-  background-size: 150%;
+  background-size: 100%;
   background-position: 50% 30%;
   background-repeat: no-repeat;
   border-radius: 50%;
