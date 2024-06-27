@@ -24,6 +24,8 @@ const AppController = (function (UICtrl, APICtrl, PlaylistGenerator) {
     var updateClockInterval = 1000;
     var clockTimer = null;
 
+    const SONG_SPACING = 500; // ms between songs
+
     function setOnLoad(_needsFeatures, _needsGenres, _onLoad) {
         onLoad = _onLoad;
         needsFeatures = _needsFeatures;
@@ -299,7 +301,7 @@ const AppController = (function (UICtrl, APICtrl, PlaylistGenerator) {
                 );
                 break;
         }
-        PlaylistGenerator.setTracklist(tracks);
+        PlaylistGenerator.setTracklist(tracks, SONG_SPACING);
 
         generatePlaylist();
     };
@@ -324,7 +326,7 @@ const AppController = (function (UICtrl, APICtrl, PlaylistGenerator) {
                 UICtrl.inputField().minSongLength,
                 maxLength,
                 UICtrl.inputField().minTracks,
-                maxTracks
+                maxTracks,
             );
 
             UICtrl.resetTracks();
@@ -335,7 +337,7 @@ const AppController = (function (UICtrl, APICtrl, PlaylistGenerator) {
                     num,
                     el.name,
                     el.artists.map((a) => a.name).join(", "),
-                    el.duration_ms
+                    el.duration_ms 
                 )
             );
             UICtrl.startPlaylistAnimation();
@@ -540,7 +542,6 @@ const AppController = (function (UICtrl, APICtrl, PlaylistGenerator) {
             );
             var trackTimeRemaining = state.item.duration_ms - currentProgress;
 
-            // console.log("Last clock: " + clock + ", remaining time: " + timeRemaining);
             if (
                 timeRemaining >= 0 &&
                 (clock === null ||
@@ -563,15 +564,11 @@ const AppController = (function (UICtrl, APICtrl, PlaylistGenerator) {
             } else if (timeRemaining < 0) {
                 UICtrl.setInfoText(infoText);
             }
-        } else if (PlaylistGenerator.getNumTracks() > 0) {
-            console.log("clocked stopped, not playing");
-            UICtrl.setInfoText(infoText);
-            document.title = originalTitle;
-            clock = null;
-            clearInterval(clockTimer);
-            clockTimer = null;
         } else {
-            console.log("clocked stopped, playlist empty");
+            if (PlaylistGenerator.getNumTracks() > 0) {
+                UICtrl.setInfoText(infoText);
+                document.title = originalTitle;
+            }
             clock = null;
             clearInterval(clockTimer);
             clockTimer = null;

@@ -2,6 +2,8 @@ const PlaylistGenerator = (function () {
     var tracklist = [];
     var generatedPlaylist = [];
 
+    var songSpacing = 0;
+
     function getPermutations(array, size) {
         function p(t, i) {
             if (t.length === size) {
@@ -75,8 +77,17 @@ const PlaylistGenerator = (function () {
         return array;
     }
 
-    function _setTracklist(tracks) {
-        tracklist = tracks;
+    function _setTracklist(tracks, newSongSpacing) {
+        // Set tracklist to be equal to tracks, while dealing with song spacing (time between songs)
+        // We handle this by adding the duration of the song spacing to the duration of each song
+        tracklist = tracks.map((track) => {
+            return {
+                ...track,
+                duration_ms: track.duration_ms + newSongSpacing,
+            };
+        });
+
+        songSpacing = newSongSpacing;
     }
 
     function _sumOfFirst(list, amount, ignore) {
@@ -223,6 +234,9 @@ const PlaylistGenerator = (function () {
             window.alert("The chosen source is empty!");
             return [];
         }
+
+        maxSongLength += songSpacing;
+        minSongLength += songSpacing;
 
         if (maxSongLength < minSongLength) {
             window.alert(
@@ -663,8 +677,8 @@ const PlaylistGenerator = (function () {
     }
 
     return {
-        setTracklist(tracks) {
-            _setTracklist(tracks);
+        setTracklist(tracks, songSpacing) {
+            _setTracklist(tracks, songSpacing);
         },
 
         generate(min, max, minSongLength, maxSongLength, minTracks, maxTracks) {
@@ -676,7 +690,16 @@ const PlaylistGenerator = (function () {
                 minTracks,
                 maxTracks
             );
-            generatedPlaylist = shuffle(generatedPlaylist);
+
+            console.log(generatedPlaylist);
+            // Shuffle the playlist and adjust the duration of each song to account for song spacing
+            generatedPlaylist = shuffle(generatedPlaylist).map((track) => {
+                return {
+                    ...track,
+                    duration_ms: track.duration_ms - songSpacing,
+                };
+            });
+            console.log(generatedPlaylist);
             return generatedPlaylist;
         },
 
@@ -692,7 +715,7 @@ const PlaylistGenerator = (function () {
             return generatedPlaylist == null
                 ? 0
                 : generatedPlaylist.reduce(function (prev, cur) {
-                      return prev + cur.duration_ms;
+                      return prev + cur.duration_ms + songSpacing;
                   }, 0);
         },
 
@@ -709,7 +732,7 @@ const PlaylistGenerator = (function () {
                 : generatedPlaylist
                       .slice(trackIndex)
                       .reduce(function (prev, cur) {
-                          return prev + cur.duration_ms;
+                          return prev + cur.duration_ms + songSpacing;
                       }, 0) - progress;
         },
     };
