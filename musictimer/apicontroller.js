@@ -109,7 +109,12 @@ const APIController = (function () {
             await processTokenResponse(data);
             window.history.replaceState({}, document.title, "/");
         } catch (errObj) {
-            showErrorAlert(errObj);
+            if (errObj.error === "invalid_grant") {
+                console.log("Invalid grant, logging out...");
+                _logout();
+            } else {
+                showErrorAlert(errObj);
+            }
         }
     };
 
@@ -147,13 +152,19 @@ const APIController = (function () {
     };
 
     async function addThrowErrorToFetch(response) {
-        if (response.status === 204) {
-            // No Content, cannot read JSON body
-            return {};
-        } else if (response.ok) {
-            return await response.json();
+        // There seems to be an issue with the "me/player/shuffle" endpoint.
+        // It returns 200 when it should be returning 204 (No Content), resulting in an error when trying to read the JSON body.
+        if (response.url.includes("me/player/shuffle")) {
+            if (response.status === 200) {
+                return {};
+            }
+        }
+
+        response_json = (response.status !== 204 ? await response.json() : {});
+        if (response.ok) {
+            return response_json;
         } else {
-            throw { response, error: (await response.json()).error };
+            throw { response, error: response_json.error };
         }
     }
 

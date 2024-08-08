@@ -472,27 +472,38 @@ const AppController = (function (UICtrl, APICtrl, PlaylistGenerator) {
     };
 
     const updateState = async (runAgain = true) => {
-        state = await APICtrl.getPlaybackState();
+        newState = await APICtrl.getPlaybackState();
+        
+        // Update state to be equal to new state, but keep the old timestamp
+        state = {
+            ...newState,
+            timestamp: (state && state.timestamp) ? state.timestamp : newState.timestamp,
+        };
+
 
         if (
             state !== null &&
             state.item != null &&
             UICtrl.isDisplayingTrack(state.item.id)
         ) {
-            var currentProgress = Date.now() - state.timestamp;
-            var reportedProgress = state.progress_ms;
-            if (Math.abs(currentProgress - reportedProgress) > 1000) {
-                state.timestamp = Date.now() - state.progress_ms; // update timestamp to approximately when the song started playing
+            var isNewTrack = UICtrl.setCurrentTrack(state.item.id);
+            if (isNewTrack) {
+                // Update timestamp
+                state.timestamp = newState.timestamp;
             }
 
-            var trackTimeRemaining = state.item.duration_ms - currentProgress;
+            var currentProgress = Date.now() - state.timestamp;
+            var reportedProgress = state.progress_ms;
+            if (Math.abs(currentProgress - reportedProgress) > 3000) {
+                console.log("Correcting progress: " + currentProgress);
+                state.timestamp = Date.now() - state.progress_ms; // update timestamp to approximately when the song started playing
+                state.corrected = true;
+            }
 
-            var isNewTrack = UICtrl.setCurrentTrack(state.item.id);
             if (isNewTrack) {
                 UICtrl.setTrackProgress(
                     Math.min(currentProgress, state.item.duration_ms).toHHMMSS()
                 );
-                // var beepURI = "spotify:track:71a1rPBpAM5w8okBdlbbwU";
                 if (
                     PlaylistGenerator.isFirstTrack(state.item.id) &&
                     clock !== null &&
@@ -502,6 +513,9 @@ const AppController = (function (UICtrl, APICtrl, PlaylistGenerator) {
                     // playlist finished
                 }
             }
+
+            var trackTimeRemaining = state.item.duration_ms - currentProgress;
+
 
             if (!clockTimer) {
                 clockTimer = setInterval(updateClock, updateClockInterval);
